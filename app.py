@@ -279,20 +279,23 @@ if "Document Type" in filtered.columns:
     filtered = filtered[filtered["Document Type"].astype(str).isin(selected_doc_types)]
 
 if "Source title" in filtered.columns:
-Source_col = get_col(filtered, ["Source title", "Source Title", "Source title "])
+    sources = sorted(
+        filtered["Source title"]
+        .dropna()
+        .astype(str)
+        .unique()
+        .tolist()
+    )
 
-if source_col:
-    source_data = filtered[source_col]
+    selected_sources = st.sidebar.multiselect(
+        "Revista/Fuente",
+        sources,
+        default=sources
+    )
 
-    # Si por alguna razón devuelve varias columnas, tomar la primera
-    if isinstance(source_data, pd.DataFrame):
-        source_data = source_data.iloc[:, 0]
-
-    sources = sorted(source_data.dropna().astype(str).unique().tolist())
-else:
-    sources = []
-    selected_sources = st.sidebar.multiselect("Revista/Fuente", sources, default=sources)
-    filtered = filtered[filtered["Source title"].astype(str).isin(selected_sources)]
+    filtered = filtered[
+        filtered["Source title"].astype(str).isin(selected_sources)
+    ]
 
 search_term = st.sidebar.text_input("Buscar palabra en título o abstract")
 if search_term:
