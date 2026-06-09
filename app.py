@@ -279,7 +279,18 @@ if "Document Type" in filtered.columns:
     filtered = filtered[filtered["Document Type"].astype(str).isin(selected_doc_types)]
 
 if "Source title" in filtered.columns:
-    sources = sorted(filtered["Source title"].dropna().astype(str).unique().tolist())
+Source_col = get_col(filtered, ["Source title", "Source Title", "Source title "])
+
+if source_col:
+    source_data = filtered[source_col]
+
+    # Si por alguna razón devuelve varias columnas, tomar la primera
+    if isinstance(source_data, pd.DataFrame):
+        source_data = source_data.iloc[:, 0]
+
+    sources = sorted(source_data.dropna().astype(str).unique().tolist())
+else:
+    sources = []
     selected_sources = st.sidebar.multiselect("Revista/Fuente", sources, default=sources)
     filtered = filtered[filtered["Source title"].astype(str).isin(selected_sources)]
 
@@ -436,7 +447,7 @@ else:
 
 st.divider()
 st.subheader("🔍 Tabla interactiva de artículos")
-cols_to_show = require_columns(filtered, ["Title", "Authors", "Year", "Cited by", "Document Type", "Source title", "Abstract"])
+cols_to_show = require_columns(filtered, ["Title", "Authors", "Year", "Cited by", "Document Type", "Source_col", "Abstract"])
 st.dataframe(filtered[cols_to_show], use_container_width=True, hide_index=True)
 
 with st.expander("📥 Ver columnas disponibles en el CSV"):
