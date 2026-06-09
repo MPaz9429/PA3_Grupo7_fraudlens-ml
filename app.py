@@ -450,7 +450,10 @@ else:
 
 st.divider()
 st.subheader("🔍 Tabla interactiva de artículos")
-cols_to_show = require_columns(filtered, ["Title", "Authors", "Year", "Cited by", "Document Type", "Source_col", "Abstract"])
+cols_to_show = require_columns(
+    filtered,
+    ["Title", "Authors", "Year", "Cited by", "Document Type", "Source title", "Abstract"]
+)
 st.dataframe(filtered[cols_to_show], use_container_width=True, hide_index=True)
 
 with st.expander("📥 Ver columnas disponibles en el CSV"):
