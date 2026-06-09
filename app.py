@@ -16,19 +16,19 @@ from wordcloud import WordCloud, STOPWORDS
 # =========================================================
 
 # Reemplaza esta URL por la URL RAW de tu CSV en GitHub.
-DATA_URL = "PEGAR_AQUI_URL_RAW_DEL_CSV"
+DATA_URL = "https://raw.githubusercontent.com/MPaz9429/PA3_Grupo7_fraudlens-ml/main/scopus_ML_Banking.csv"
 
 # Enlaces del proyecto.
-GITHUB_URL = "PEGAR_AQUI_URL_GITHUB"
-COLAB_URL = "PEGAR_AQUI_URL_COLAB"
+GITHUB_URL = "https://github.com/MPaz9429/PA3_Grupo7_fraudlens-ml"
+COLAB_URL = "https://colab.research.google.com/drive/1KxqHoyITv6_AubWMKqgRQ8DwgtoUpDuk?usp=sharing"
 
 # Información académica.
 NRC = "PEGAR_AQUI_NRC"
 GRUPO = "PEGAR_AQUI_NUMERO_DE_GRUPO"
 INTEGRANTES = [
-    "PEGAR_INTEGRANTE_1",
-    "PEGAR_INTEGRANTE_2",
-    "PEGAR_INTEGRANTE_3",
+    "Mercedes",
+    "Leon",
+    "Alejandra",
 ]
 
 PREGUNTA_INVESTIGACION = "¿Cómo contribuye Machine Learning a la detección de fraudes financieros en la industria bancaria?"
